@@ -1,0 +1,9 @@
+.shrink{
+  width: 90%;
+  height: 98%;
+  border-radius: 20px;
+}
+
+.transition-btn{
+  transition:width 0.2s ease, height 0.2s ease;
+}

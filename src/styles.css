@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face{
+  font-family: 'Neue Montreal';
+  src: url('/fonts/Neue-Montreal/OTF/PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Neue Montreal';
+  src: url('/fonts/Neue-Montreal/OTF/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: bold;
+}

@@ -1,0 +1,96 @@
+<div
+  class="top-navigation-container text-[14px] w-full fixed z-1030 lg:h-[128px]"
+>
+  <header
+    class="nav-wrapper relative h-[64px] w-full z-2 bg-white py-auto flex items-center"
+  >
+    <!-- <button data-cy="skip-nav" class="up-skip-nav sr-only p-[14px] text-[16px]" tabindex="1">Skip to content</button> -->
+    <div
+      class="nav-container mx-0 lg:px-6 px-0 flex items-center h-full w-full"
+    >
+      <div class="nav-header-wrapper mt-0">
+        <div class="nav-header flex items-center">
+          <!-- <button class="nav-toggle nav-btn-icon nav-d-lg-none"></button> -->
+          <a href="/" target="_self" class="flex mr-[25px]">
+            <span class="nav-logo inline-flex w-[82px]">
+              <app-logo></app-logo>
+            </span>
+          </a>
+          <!-- Mobile navbar-right -->
+          <!-- <div class="nav-visitor-mobile-right"></div> -->
+        </div>
+      </div>
+      <div class="nav-main flex h-full items-center justify-between w-full">
+        <div
+          id="nav-left"
+          class="gap-0 flex order-1 h-full items-center"
+        >
+          <ul class="items-center justify-start list-none flex h-full">
+            <li>
+              <!-- Mobile menu subitems -->
+            </li>
+            <li>
+              <!-- Mobile menu dropdown -->
+            </li>
+            @for(item of itemText; track item){
+            <li class="top-nav-lg-block">
+              <app-li-item [itemData]="item"></app-li-item>
+            </li>
+            }
+          </ul>
+        </div>
+        <div
+          id="nav-right"
+          class="gap-0 flex order-2 justify-end h-full items-center"
+        >
+          <div class="nav-search-container flex h-[40px] w-[332px]">
+            <div class="search-wrapper h-full w-full block">
+              <form id="navSearchForm" class="navSearchForm rounded-[20px] border-2 border-gray-200 m-[2px] h-full flex items-center hover:bg-gray-200 justify-between">
+                <div class="nav-search-input-container h-full relative flex items-center">
+
+                  <input maxlength="100px" type="search" placeholder="Search" class="absolute nav-search-autosuggest-input px-[35px] h-full rounded-[18px] hover:bg-gray-50 focus:ring-0 outline-none focus:outline-2 focus:outline-gray-400 focus:outline-offset-0"/>
+                  <button type="submit" class="absolute start-2">
+                    <span class="w-6 h-6">
+                      <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      role="img"
+                      aria-hidden="true"
+                    >
+                      <path
+                        class="stroke-current"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
+                        d="M10.688 18.377a7.688 7.688 0 100-15.377 7.688 7.688 0 000 15.377zm5.428-2.261L21 21"
+                      />
+                    </svg>
+                    </span>
+                  </button>
+                </div>
+                <div class="nav-search-dropdown-container relative w-[91px] rounded-[18px] hover:bg-gray-50 before:absolute before:left-[-1px] before:top-2 before:bottom-2 before:border-l-[#E9E9E9] before:border-l-[1px] before:w-1 before:transition-opacity h-full flex">
+                  <button class="search-switch-btn h-full w-full flex items-center justify-between px-4">
+                    <span class="flex-grow h-full flex items-center justify-center">Talent</span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" role="img" class="w-4 h-4">
+                        <path vector-effect="non-scaling-stroke" stroke="var(--icon-color, #001e00)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M18 10l-6 5-6-5"></path>
+                      </svg>
+                    </span>
+                  </button>
+                  <!-- <ul class="nav-dropdown-menu nav-search-switch-dropdown mt-[10px] list-none bg-white absolute py-[7px] px-0 w-[224px] h-[156px]">
+                    <li class=""></li>
+                  </ul> -->
+                </div>
+              </form>
+            </div>
+          </div>
+          <a href="/signin" class="relative px-6">Log in</a>
+          <a href="/signup" class="relative h-[36px] px-[24px] m-[2px] bg-[#108A00] hover:bg-[#148a00] text-white rounded-xl flex items-center">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

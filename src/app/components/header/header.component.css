@@ -1,0 +1,6 @@
+.navSearchForm{
+  transition: background-color 0.2s ease;
+}
+.nav-search-autosuggest-input{
+  transition: background-color 0.2s ease, outline 0.2s ease;
+}
