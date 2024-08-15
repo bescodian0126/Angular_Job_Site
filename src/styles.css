@@ -12,6 +12,13 @@
 
 @font-face{
   font-family: 'Neue Montreal';
+  src: url('/fonts/Neue-Montreal/OTF/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Neue Montreal';
   src: url('/fonts/Neue-Montreal/OTF/PPNeueMontreal-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: bold;
