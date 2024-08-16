@@ -67,7 +67,7 @@
   <div class="w-full sm:mx-auto mx-3 mt-[-16px]">
     <div class="or-layout flex flex-row items-center p-0 gap-[18px] relative">
       <div
-        class="divider w-[400px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
+        class="divider w-[450px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
       ></div>
       <div
         class="font-normal text-[16px] leading-[33px] flex items-center text-[#666666] whitespace-nowrap"
@@ -75,11 +75,37 @@
         or
       </div>
       <div
-        class="divider w-[400px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
+        class="divider w-[450px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
       ></div>
     </div>
-    <form class="w-full mt-[30px]" [formGroup]="formBuilder"
+    <form class="w-full" [formGroup]="formBuilder"
     (submit)="onSignup()">
+    <div class="flex items-center justify-center w-full mb-[20px]">
+      <div class="justify-center flex" [ngClass]="{'w-1/2': !preview, 'w-[150px] h-[150px]': preview}">
+        <button
+        class=" text-center"
+        (click)="fileInput.click()"
+        [ngClass]="{'bg-white rounded-[75px]': preview, 'rounded-xl w-full px-4 text-[16px] py-3 text-white bg-blue-600': !preview}"
+        >
+          @if(!preview){
+            Upload Image
+          }
+          <input
+          type="file"
+          #fileInput
+          class="hidden"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+      <img [src]="preview" class="rounded-[75px] object-cover" [ngClass]="{'w-[150px] h-[150px]': preview}"/>
+      </button>
+
+      <!-- Hidden file input -->
+
+      </div>
+      <!-- This is the button to open the file dialog -->
+
+    </div>
       <div class="relative w-full gap-3 justify-between flex">
         <div class="relative w-full">
           <p
@@ -113,7 +139,6 @@
           />
         </div>
       </div>
-
       <div class="relative w-full mt-4">
         <p
           class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"

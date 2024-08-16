@@ -5,5 +5,10 @@
 }
 
 .transition-btn{
+  /* scale: 1; */
   transition:width 0.2s ease, height 0.2s ease;
 }
+/*
+.transition-btn:focus{
+  scale: 0.95;
+} */

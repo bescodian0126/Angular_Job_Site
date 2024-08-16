@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,13 +13,15 @@ import { LogoComponent } from '../../utils/logo/logo.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { matchPassword } from '../../utils/auth/password-validator/matchPasswordValidator';
 import { passwordStrengthValidator } from '../../utils/auth/password-validator/matchPasswordValidator';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
-  imports: [ReactiveFormsModule, SignupSelectRoleComponent, LogoComponent],
+  imports: [ReactiveFormsModule, SignupSelectRoleComponent, LogoComponent, CommonModule],
 })
 export class SignupComponent {
   public currentState: string = '';
@@ -27,6 +29,14 @@ export class SignupComponent {
   formBuilder: FormGroup;
   public errorState: any = {};
   signupStatus: string = '';
+
+  selectedFiles?: FileList;
+  currentFile?: File;
+  progress = 0;
+  message = '';
+  preview = '';
+
+  imageInfos?: Observable<any>;
 
   constructor(
     private signupDataService: SignupDataService,
@@ -49,6 +59,31 @@ export class SignupComponent {
     this.formBuilder.statusChanges.subscribe(() => {
       this.updateErrorState();
     });
+  }
+
+  @ViewChild('fileInput') fileInput: any; // Reference to file input
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      console.log('Selected file:', file.name);
+      console.log(file);
+
+      const fileUrl = URL.createObjectURL(file);
+      this.preview = fileUrl;
+      console.log('File URL: ', fileUrl);
+
+      this.authService.uploadAvatar(file).subscribe(
+        (response)=>{
+          console.log(response);
+        },
+        (error)=>{
+          console.error(error);
+        }
+      )
+      // You can handle the file (upload, read, etc.) here
+    }
   }
 
   handleCurrentState() {

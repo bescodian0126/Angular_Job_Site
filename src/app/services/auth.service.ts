@@ -14,6 +14,8 @@ export class AuthService{
 
   private signupUrl = 'http://192.168.11.12:5069/register';
 
+  private avatarUploadTest = 'http://192.168.11.12:5069/profile';
+
   constructor(private http: HttpClient){}
 
   // signup(data:any):Observable<any>{
@@ -42,6 +44,16 @@ export class AuthService{
     })
     .pipe(tap((result) => {
       localStorage.setItem('authUser', JSON.stringify(result));
+    }));
+  }
+
+  uploadAvatar(file: File):Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post(this.avatarUploadTest, formData)
+    .pipe(tap((result) => {
+      // localStorage.setItem('authUser', JSON.stringify(result));
+      console.log(result);
     }));
   }
 }
