@@ -1,2 +1,197 @@
+@if(!flg){
 <app-signup-select-role></app-signup-select-role>
+}@else {
+<div
+  class="nav-header-wrapper xl:h-16 h-14 w-full relative flex items-center xl:px-6 px-4 justify-between"
+>
+  <div class="nav-header flex items-center">
+    <!-- <button class="nav-toggle nav-btn-icon nav-d-lg-none"></button> -->
+    <a href="/" target="_self" class="flex mr-[25px]">
+      <span class="nav-logo inline-flex w-[82px]">
+        <app-logo></app-logo>
+      </span>
+    </a>
+  </div>
+  <div class="flex mr-4">
+    <p class="text-[14px]">
+      @if(currentState == 'freelancer'){ Looking for work? }@else if(currentState ==
+      'client'){ Here to hire talent? }
+    </p>
+    <button
+    (click)="handleCurrentState()"
+    >
+      <p class="text-[14px] ml-4 text-[#108a00] hover:text-[#14a800]">
+        @if(currentState == 'freelancer'){ Join as a Client }@else if(currentState
+        == 'client'){ Apply as talent }
+      </p>
+    </button>
+  </div>
+</div>
+<div
+  class="form-panel mt-[30px] w-full sm:rounded-2xl flex flex-col items-center sm:px-8 md:px-[150px] xl:px-[400px] px-4"
+>
+  <h1
+    class="sm:text-[34px] text-[28px] font-medium font-montreal sm:mt-[10px] mt-[-10px] leading-[110%]"
+  >
+    @if(currentState == 'client'){ Sign up to hire talent }@else if(currentState
+    == 'freelancer'){ Sign up to find work you love }
+  </h1>
+  <div class="flex sm:justify-between sm:flex-row flex-col w-full gap-4 my-10">
+    <div class="relative w-full h-[40px]">
+      <button
+        type="button"
+        class="transition-btn w-full h-[40px] justify-center text-black bg-white font-medium rounded-[20px] text-md px-5 py-2.5 text-center inline-flex items-center border border-black"
+      >
+        <span class="mr-1 flex items-center">
+          <div class="h-[60%] items-center">
+            <img src="/applelogo.png" class="w-[90%]" />
+          </div>
+        </span>
+        Continue with Apple
+      </button>
+    </div>
+    <div class="relative w-full h-[40px]">
+      <div
+        class="absolute top-0 bottom-0 start-0 flex items-center pointer-events-none bg-white mt-[1px] mb-[1px] ml-[1px] pr-[6px] pl-[8px] rounded-[19px]"
+      >
+        <img src="/google-icon.png" class="w-[90%]" />
+      </div>
+      <button
+        type="button"
+        class="transition-btn w-full h-full justify-center text-white bg-[#4285F4] font-medium rounded-[20px] text-md px-5 py-2.5 text-center inline-flex items-center"
+      >
+        <p class="ml-[30px]">Continue with Google</p>
+      </button>
+    </div>
+  </div>
+  <div class="w-full sm:mx-auto mx-3 mt-[-16px]">
+    <div class="or-layout flex flex-row items-center p-0 gap-[18px] relative">
+      <div
+        class="divider w-[400px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
+      ></div>
+      <div
+        class="font-normal text-[16px] leading-[33px] flex items-center text-[#666666] whitespace-nowrap"
+      >
+        or
+      </div>
+      <div
+        class="divider w-[400px] h-[1px] bg-[#D9D9D9] flex-grow-1 order-0"
+      ></div>
+    </div>
+    <form class="w-full mt-[30px]" [formGroup]="formBuilder"
+    (submit)="onSignup()">
+      <div class="relative w-full gap-3 justify-between flex">
+        <div class="relative w-full">
+          <p
+            class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"
+          >
+            First Name
+          </p>
+          <input
+            id="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            type="text"
+            required
+            class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 w-full p-2 focus:outline-gray-400"
+          />
+        </div>
 
+        <div class="relative w-full">
+          <p
+            class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"
+          >
+            Second Name
+          </p>
+          <input
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Last Name"
+            type="text"
+            required
+            class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 w-full p-2 focus:outline-gray-400"
+          />
+        </div>
+      </div>
+
+      <div class="relative w-full mt-4">
+        <p
+          class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"
+        >
+        @if(currentState == 'client'){ Work email address }@else if(currentState
+    == 'freelancer'){ Email }
+        </p>
+        <input
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+          type="email"
+          required
+          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 w-full p-2 focus:outline-gray-400"
+        />
+      </div>
+
+      <div class="relative w-full mt-4">
+        <p
+          class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"
+        >
+          Password
+        </p>
+        <input
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+          type="password"
+          required
+          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 w-full p-2 focus:outline-gray-400"
+        />
+      </div>
+
+      <div class="relative w-full mt-4">
+        <p
+          class="text-[14px] font-montreal font-medium text-gray-700 tracking-wider mb-2 ml-[2px]"
+        >
+          Confirm Password
+        </p>
+        <input
+          id="passwordRepeat"
+          formControlName="passwordRepeat"
+          placeholder="Confirm your password"
+          type="password"
+          required
+          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 w-full p-2 focus:outline-gray-400"
+        />
+      </div>
+
+      <div class="error-panel mt-3 w-full flex justify-center">
+        @if(signupStatus == 'error'){
+          <p class="text-red-500">Please enter correct information.</p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="transition-btn bg-[#268A19] w-full rounded-[10px] text-white hover:bg-[#13A800] font-semibold p-2.5 mt-[25px]"
+      >
+        Create my account
+      </button>
+    </form>
+    <div
+      class="gap-layout flex flex-row items-center p-0 gap-[18px] relative"
+    >
+    <div class="mt-4 flex justify-center text-center w-full">
+      <p class="text-4 font-normal mr-2 tracking-wide">
+        Already have an account?
+      </p>
+      <span
+        ><a
+          href="/signin"
+          class="underline text-[#108a00] hover:text-[#14a800] font-medium"
+          >Log in</a
+        ></span
+      >
+    </div>
+    </div>
+  </div>
+</div>
+ }

@@ -1,6 +1,8 @@
 <div class="sm:mx-6 mt-5 mx-auto flex lg:justify-start justify-center">
 <div class="w-[82px] sm:left-0">
+  <a href = '/'>
 <app-logo></app-logo>
+  </a>
 </div>
 </div>
 <div
@@ -42,7 +44,7 @@
           formControlName="email"
           placeholder="Username or Email"
           type="email"
-          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 ps-10 w-full p-1.5"
+          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 ps-10 w-full p-1.5 focus:outline-gray-400"
         />
       </div>
 
@@ -104,8 +106,14 @@
           formControlName="password"
           placeholder="Password"
           type="password"
-          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 ps-10 w-full p-1.5"
+          class="bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 focus:border-gray-400 ps-10 w-full p-1.5 focus:outline-gray-400"
         />
+      </div>
+
+      <div class="error-panel mt-3 w-full flex justify-center">
+        @if(loginStatus == 'error'){
+          <p class="text-red-500">Username or password is incorrect.</p>
+        }
       </div>
 
       <button
@@ -173,11 +181,12 @@
       ></div>
     </div>
     <div class="flex justify-center w-full mt-[25px] mb-[40px]">
-      <button
-        class="transition-btn border-2 border-[#108a00] bg-white hover:bg-gray-50 py-2.5 rounded-xl w-[50%]"
+      <a
+        href="/signup"
+        class="transition-btn border-2 border-[#108a00] bg-white text-center hover:cursor-pointer hover:bg-gray-50 py-2.5 rounded-xl w-[50%]"
       >
         Sign Up
-      </button>
+      </a>
     </div>
   </div>
 </div>

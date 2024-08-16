@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from "../../utils/logo/logo.component";
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-signin',
@@ -15,12 +16,14 @@ export class SigninComponent {
   title = 'Hello, Angular!';
   isShrink: boolean = false;
   formBuilder: FormGroup;
+  loginStatus: string = '';
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.formBuilder = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+    this.loginStatus = '';
   }
 
   shrinkButton(): void {
@@ -48,13 +51,18 @@ export class SigninComponent {
       this.authService.login(email, password).subscribe(
         response => {
           console.log('Login successful: ', response);
+          localStorage.setItem('token', response.token);
+          this.loginStatus = 'success';
+          this.router.navigate(['/dashboard']);
         },
         error => {
           console.error('Login Failed', error);
+          this.loginStatus = 'error'
         }
       );
     } else {
       console.error('Form is invalid');
+      this.loginStatus = 'error';
     }
   }
 }

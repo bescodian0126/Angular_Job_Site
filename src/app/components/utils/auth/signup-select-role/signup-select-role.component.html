@@ -111,6 +111,7 @@
         (mouseup)="setApplyButtonState(false)"
         (mouseleave)="setApplyButtonState(false)"
         [disabled]="currentRole === ''"
+        (click)="sendRole(currentRole)"
       >
         @if(currentRole == 'client'){
           Join as a Client

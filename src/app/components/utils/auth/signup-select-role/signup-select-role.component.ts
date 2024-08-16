@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { LogoComponent } from "../../logo/logo.component";
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SignupDataService } from '../../../../services/signup-data.service';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,6 +36,8 @@ export class SignupSelectRoleComponent {
   //   this.state = 'clr';
   //   console.log('mouse up');
   // }
+  constructor(private signupDataService: SignupDataService){
+  }
   clientState: string = 'normal';
   freelancerState: string = 'normal';
   applyButtonState: string = 'normal';
@@ -56,5 +59,9 @@ export class SignupSelectRoleComponent {
     if(clicked == 'client') this.currentRole = 'client';
     else if(clicked == 'freelancer') this.currentRole = 'freelancer';
     else this.currentRole = '';
+  }
+
+  sendRole(data: string){
+    this.signupDataService.sendRole(data);
   }
 }
